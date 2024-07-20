@@ -16,7 +16,7 @@ On Windows systems, Channel Files reside in the following directory: "C:\Windows
 
 # Instructions
 
-Boot intto Safe Mode or WinRE's Command Prompt from the WinRE blue screen.
+Boot into Safe Mode or WinRE's Command Prompt from the WinRE blue screen.
 
 Safe Mode:
 See advanced repair options → Troubleshoot → Advanced options → Startup Settings → Restart → Options menu: Safe Mode F4 / 4
@@ -49,16 +49,20 @@ Shutdown /f /r /t 0
 WinRE Command Prompt:
 (C: is usually not the OS partition mount point in WinRE)
 Obtain mount point of the OS partition:
-::# Launch DiskPart:
+Launch DiskPart:
     DiskPart
 
-  ::# List all volumes [partitions]:
-      Lis Vol
+List all volumes [partitions]:
+    Lis Vol
 
-  ::# Close DiskPart:
-      Exit
+Close DiskPart:
+    Exit
 Delete file:
 Del /f /q "<OSdriveLetter>:\Windows\System32\drivers\CrowdStrike\C-00000291*.sys"
 Reboot: Close Command Prompt → Continue to Windows <#>
 
 Normally boot to Windows
+
+
+# Additional notes
+Some machines may self-recover between auto-booting to WinRE since a fix has been pushed out. Azure's help pages recommend rebooting VMs up to 15x as a potential workaround. Furthermore, it might be possible to boot a WinPE or WinRE CD/DVD/PXE/USB to do the necessary changes, but this isn't guaranteed since these are business machines. Windows installer: once the GUI loads, open a terminal via Shift+F10
